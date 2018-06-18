@@ -124,7 +124,7 @@ export class Manager extends Component {
       lastSlideIndex: null,
       slideReference: [],
       fullscreen: typeof window !== 'undefined' && window.innerHeight === screen.height,
-      mobile: window.innerWidth < props.contentWidth,
+      mobile: typeof window !== 'undefined' && window.innerWidth < props.contentWidth,
       autoplaying: props.autoplay
     };
 
