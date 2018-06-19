@@ -73,7 +73,8 @@ export class Manager extends Component {
     transitionDuration: 500,
     progress: 'pacman',
     controls: true,
-    globalStyles: true
+    globalStyles: true,
+    routePrefix: ''
   };
 
   static propTypes = {
@@ -89,7 +90,8 @@ export class Manager extends Component {
     progress: PropTypes.oneOf(['pacman', 'bar', 'number', 'none']),
     route: PropTypes.object,
     transition: PropTypes.array,
-    transitionDuration: PropTypes.number
+    transitionDuration: PropTypes.number,
+    routePrefix: PropTypes.string
   };
 
   static contextTypes = {
@@ -336,7 +338,7 @@ export class Manager extends Component {
       if (!isNaN(parseInt(slide, 10))) {
         slide = parseInt(slide, 10) - offset;
       }
-      this.context.history.replace(`/${slide}${this._getSuffix()}`);
+      this.context.history.replace(`${this.props.routePrefix}/${slide}${this._getSuffix()}`);
     }
   }
   _prevSlide() {
