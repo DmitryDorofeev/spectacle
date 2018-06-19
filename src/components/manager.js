@@ -273,19 +273,19 @@ export class Manager extends Component {
   _toggleOverviewMode() {
     const suffix =
       this.props.route.params.indexOf('overview') !== -1 ? '' : '?overview';
-    this.context.history.replace(`/${this.props.route.slide}${suffix}`);
+    this.context.history.replace(`${this.props.routePrefix}/${this.props.route.slide}${suffix}`);
   }
   _togglePresenterMode() {
     const suffix =
       this.props.route.params.indexOf('presenter') !== -1 ? '' : '?presenter';
-    this.context.history.replace(`/${this.props.route.slide}${suffix}`);
+    this.context.history.replace(`${this.props.routePrefix}/${this.props.route.slide}${suffix}`);
   }
   _toggleTimerMode() {
     const isTimer =
       this.props.route.params.indexOf('presenter') !== -1 &&
       this.props.route.params.indexOf('timer') !== -1;
     const suffix = isTimer ? '?presenter' : '?presenter&timer';
-    this.context.history.replace(`/${this.props.route.slide}${suffix}`);
+    this.context.history.replace(`${this.props.routePrefix}/${this.props.route.slide}${suffix}`);
   }
   _getSuffix() {
     if (this.props.route.params.indexOf('presenter') !== -1) {
@@ -353,7 +353,7 @@ export class Manager extends Component {
     ) {
       if (slideIndex > 0) {
         this.context.history.replace(
-          `/${this._getHash(slideIndex - 1)}${this._getSuffix()}`
+          `${this.props.routePrefix}/${this._getHash(slideIndex - 1)}${this._getSuffix()}`
         );
         localStorage.setItem(
           'spectacle-slide',
@@ -417,7 +417,7 @@ export class Manager extends Component {
         this.viewedIndexes.add(slideIndex);
         const offset = this._getOffset(slideIndex);
         this.context.history.replace(
-          `/${this._getHash(slideIndex + offset) + this._getSuffix()}`
+          `${this.props.routePrefix}/${this._getHash(slideIndex + offset) + this._getSuffix()}`
         );
         localStorage.setItem(
           'spectacle-slide',
